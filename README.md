@@ -10,6 +10,15 @@ Notes:
 4. RTL and LTR languages are supported.
 5. Three dimensions -- because grid items can overlap.
 
+## Usage
+
+1. You define how many columns (and rows) you need (up to 6x6)
+2. You place your items on the grid, according to their start and end tracks for `col` and `row`
+3. **Optional:** Repeat (1.) and (2.) at different breakpoints – `md` and `lg`
+4. **Optional:** set item justification and alignment within its `col`/`row` grid area.
+
+Sometimes you can get away with not setting grid rows and item row position. (This depends on the order of your items in the HTML, and whether or not you leave any empty cells in the grid.)
+
 ## Grid system (at all viewport widths)
 
 ### Grid Setup Classes
