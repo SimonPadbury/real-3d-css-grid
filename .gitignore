@@ -1,0 +1,26 @@
+# OSX
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Sass
+
+.sass-cache
+**.sass-cache
+*.scssc
+
+#
+
+/_dev-dependencies/*
+
+# CodeKit
+
+config.codekit
+config.codekit3
+.codekit-cache
+kit

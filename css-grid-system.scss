@@ -3,47 +3,69 @@
 
 // Variables
 
-$mq--md: 768px;
-$mq--lg: 1024px;
+$mq--md: 48rem; // = 768px
+$mq--lg: 64rem; // = 1024px
 
-$grid--max-cols: 6;
-$grid--max-rows: 6;
-$grid--gap-width: 15px;
+$grid--max-cols: 4;
+$grid--max-rows: 4;
+$grid--gap-width: 1rem;
 
 // Grid
 
 @mixin grid {
   display: grid;
-}
-
-@mixin grid--setup {
-  &--cols {
-    @for $i from 1 through $grid--max-cols {
-      &-#{$i} {
-        grid-template-columns: repeat($i, 1fr);
-      }
-    }
-  }
-  &--rows {
-    @for $i from 1 through $grid--max-rows {
-      &-#{$i} {
-        grid-template-rows: repeat($i, 1fr);
-      }
-    }
-  }
   &--gap {
     grid-gap: $grid--gap-width;
   }
 }
 
-// Column Tracks and Row Tracks
+// `grid--lattice` and `grid--setup` are only used if you un-comment the
+// relevant part of the class-builder below. 
+// You only need this stuff if you run into problems when you're trying
+// to have empty cells and/or overlapping items.
+//
+// Example: .grid.grid-md--h4-v3 constrains a grid to 4 columns, 3 rows.
+
+@mixin grid--lattice {
+  &--h {
+    @for $i from 1 through $grid--max-cols {
+      &#{$i} {
+        grid-template-columns: repeat($i, 1fr);
+        &-v {
+          @for $j from 1 through $grid--max-rows {
+            &#{$j} {
+              grid-template-columns: repeat($i, 1fr);
+              grid-template-rows: repeat($j, 1fr);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin grid--setup {
+  //@include grid--lattice;
+  &-md {
+    @media (min-width: $mq--md) {
+      @include grid--lattice;
+    }
+  }
+  &-lg {
+    @media (min-width: $mq--lg) {
+      @include grid--lattice;
+    }
+  }
+}
+
+// Column tracks and row tracks
 
 @mixin column-tracks {
   @for $i from 1 through $grid--max-cols {
-    @if $i < $grid--max-cols {
+    @if $i <= $grid--max-cols {
       &--#{$i} {
         $j: $i + 1;
-        @for $j from 1 through $grid--max-cols {
+        @for $j from 1 through ($grid--max-cols + 1) {
           @if $j > $i {
             &-#{$j} {
               grid-column-start: $i;
@@ -58,10 +80,10 @@ $grid--gap-width: 15px;
 
 @mixin row-tracks { 
   @for $i from 1 through $grid--max-rows {
-    @if $i < $grid--max-rows {
+    @if $i <= $grid--max-rows {
       &--#{$i} {
         $j: $i + 1;
-        @for $j from 1 through $grid--max-rows {
+        @for $j from 1 through  ($grid--max-rows + 1) {
           @if $j > $i {
             &-#{$j} {
               grid-row-start: $i;
@@ -100,28 +122,22 @@ $grid--gap-width: 15px;
   &--stretch {align-self: stretch;}
 }
 
-// CLASS BUILDER
-// =============
+@mixin grid-tiny {
+  .col {@include column-tracks;}
+  .row {@include row-tracks;}
+  .justify {@include justify;}
+  .align {@include align;}
+}
+
+// CLASS BUILDERS
+// ==============
 
 .grid {
   @include grid;
-  @include grid--setup;
-  &-md {
-    @media (min-width: $mq--md) {
-      @include grid--setup;
-    }
-  }
-  &-lg {
-    @media (min-width: $mq--lg) {
-      @include grid--setup;
-    }
-  }
+  //@include grid--setup;
 }
 
-.col {@include column-tracks;}
-.row {@include row-tracks;}
-.justify {@include justify;}
-.align {@include align;}
+//@include grid-tiny
 
 @media (min-width: $mq--md) {
   .col-md {@include column-tracks;}

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>A real three-dimensional CSS Grid grid-system</title>
+
+<link rel="stylesheet" type="text/css" href="css-grid-system.css">
+
+<style type="text/css">
+  body {
+    margin: 0;
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    background-color: white;
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: #08f; 
+  }
+  hr {
+    height: 0;
+    margin: 2rem 0;
+    border-top: 1px solid gray;
+    padding: 0;
+  }
+  img {
+    max-width: 100%;
+  }
+  code {
+    background: #eee;
+    padding: 0.125rem 0.25rem;
+  }
+  pre code {
+    display: block;
+    padding: 0.25rem;
+    background: #eee;
+    overflow-x: auto;
+  }
+
+  /* Decoration for Exemplification */
+
+  .grid > * {
+    border: 1px solid rgba(0,0,0,0.1);
+    margin: 0.125rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.375rem;
+    background: rgba(0,0,0,0.05);
+  }
+</style>
+
+</head>
+
+<body>
+
+<main style="max-width: 66rem; margin: auto; padding: 0 1rem;">
+<h1>A real three-dimensional <em>CSS Grid</em> grid-system</h1>
+
+<div class="grid">
+  <div class="col-md--1-2">&nbsp;</div>
+  <div class="col-md--2-3">&nbsp;</div>
+  <div class="col-md--3-4">&nbsp;</div>
+  <div class="col-md--4-5">&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+</div>
+
+<br>
+
+<p>Use <code>css-grid-system.scss</code> to generate a real three-dimensional <strong>CSS Grid</strong> grid-system.</p>
+
+<h2>Features</h2>
+
+<ol>
+  <li>Unlike the traditional (columnar) 12 column grid systems, here <strong>you get to choose</strong> how many columns and rows you need for your layout: 1,2,3, or 4 (max). That covers almost everything you would ever want to do.
+    <ul>
+      <li>If you do need more than a 4 &times; 4 grid, then change the <code>$grid--max-cols</code> and <code>$grid--max-rows</code> variables. (Warning: don’t go too high here, because this could massively increase your outputted CSS.)</li>
+    </ul>
+  </li>
+  <li>The grid layout kicks in at minimum 48rem (768px) by default. Phones in portrait orientation get a single-column layout.
+    <ul>
+      <li>If you need a grid layout on devices smaller than 48rem viewport width, then you can un-comment <code>@include grid-tiny</code> in the <strong>class-builder SCSS</strong>.</li>
+    </ul>
+  <li>Per grid-item justification and alignment.</li>
+  <li>RTL and LTR languages are supported.</li>
+  <li>No need for any of that offseting, push-pulling and re-ordering stuff that you’re used to, from float and flexbox grids. </li>
+  <li>Three dimensions &mdash; because grid items can overlap.</li>
+  <li><mark><strong>All this in only 3kb minified CSS</strong></mark>.</li>
+</ol>
+
+<h2>Grid system</h2>
+
+<h3>Grid Classes</h3>
+
+<ul>
+  <li><code>.grid</code></li>
+  <li><code>.grid--gap</code></li>
+</ul>
+
+<p>That’s it. There’s no need for establishing the grid’s number of columns and rows &mdash; because the browser’s <em>CSS grid</em> engine can figure it out.</p>
+
+<p>However, in rare cases you may run into difficulties with highly complex layouts that have empty and/or overlapping grid cells. But even then, this project has you covered: un-comment the <code>@include grid-setup</code> in the <strong>class-builder</strong>, pre-process away, and then understand the example in the SCSS.</p>
+
+<h3>Grid-item Classes</h3>
+
+<ul>
+  <li><strong>Column tracking</strong> &mdash; multiple permutations, e.g.:
+    <ul>
+      <li><code>.col-md--1-3</code> item starts column track 1 and ends column track 3 = spans columns 1 &amp;2.</li>
+      <li><code>.col-md--3-4</code> item starts column track 3 and ends column track 4 = spans column 4 only.</li>
+    </ul>
+    <br>
+  </li>
+  <li><strong>Row tracking</strong> &mdash; multiple permutations, e.g.:
+    <ul>
+      <li><code>.row-md--1-2</code> item starts row track 1 and ends row track 2 = spans row 1 only.</li>
+      <li><code>.row-md--2-4</code> item starts row track 2 and ends row track 4 = spans rows 2 &amp; 3.</li>
+    </ul>
+    <br>
+  </li>
+  <li><strong>Justification (horizontal)</strong> &mdash; within grid area:
+    <ul>
+      <li> <code>.justify-md--left</code></li>
+      <li> <code>.justify-md--right</code></li>
+      <li> <code>.justify-md--center</code></li>
+      <li> <code>.justify-md--stretch</code> (default; you only need this if you unstretched it at a smaller viewport width)</li>
+    </ul>
+    <br>
+  </li>
+  <li><strong>Alignment (vertical)</strong> &mdash; within grid area:
+    <ul>
+      <li> <code>.align-md--top</code></li>
+      <li> <code>.align-md--bottom</code></li>
+      <li> <code>.align-md--center</code></li>
+      <li> <code>.align-md--stretch</code> (default; you only need this if you unstretched it at a smaller viewport width)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Responsive (viewport width) modifiers</h2>
+
+<h3>Grid Classes</h3>
+
+<ul>
+  <li><code>.grid-md--h1</code> ... <code>.grid-md--h4-v4</code> &mdash; 48rem (= 768px) width up</li>
+  <li><code>.grid-lg--h1</code> ... <code>.grid-lg--h4-v4</code> &mdash; 64rem (= 1024px) width up</li>
+</ul>
+
+<h3>Grid-item Classes</h3>
+
+<ul>
+  <li>Viewport widths 48rem up:
+    <ul>
+      <li><code>col-md--</code></li>
+      <li><code>row-md--</code></li>
+      <li><code>justify-md--</code></li>
+      <li><code>align-md--</code></li>
+    </ul>
+    <br>
+  </li>
+  <li>Viewport widths 64rem up:
+    <ul>
+      <li><code>col-lg--</code></li>
+      <li><code>row-lg--</code></li>
+      <li><code>justify-lg--</code></li>
+      <li><code>align-lg--</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Usage</h2>
+
+<p>Here’s what you actually do:</p>
+
+<ol>
+  <li>Use <code>.grid</code> (and <code>.grid--gap</code>) classes to instantiate your grid</li>
+  <li>Place your items on the grid, according to their <em>start and end tracks</em> for <code>col-md--*</code> and <code>row-md--*</code></li>
+  <li><strong>Optional:</strong> Modify (2.) for the large breakpoint, using <code>-lg--</code></li>
+  <li><strong>Optional:</strong> set item justification and alignment within its <em>grid area</em></li>
+</ol>
+
+<h2>Examples</h2>
+
+<h3>Simple</h3>
+
+<p>This grid will have 3 columns. The 6 grid items will wrap over 2 rows.</p>
+
+<div class="grid grid-md--h3">
+  <div class="col-md--1-2">First grid item</div>
+  <div class="col-md--2-3">Second grid item</div>
+  <div class="col-md--3-4">Third grid item</div>
+  <div>Fourth grid item</div>
+  <div>Fifth grid item</div>
+  <div>sixth grid item</div>
+</div>
+
+<pre><code>&lt;div class=&quot;grid grid-md--h3&quot;&gt;
+  &lt;div&gt;First grid item&lt;/div&gt;
+  &lt;div&gt;Second grid item&lt;/div&gt;
+  &lt;div&gt;Third grid item&lt;/div&gt;
+  &lt;div&gt;Fourth grid item&lt;/div&gt;
+  &lt;div&gt;Fifth grid item&lt;/div&gt;
+  &lt;div&gt;sixth grid item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Row spanning</h3>
+
+<p>2 columns and 3 rows. The first column will be occupied by the first grid item for its full height (spanning 3 rows). The second grid column will have 3 items on 3 rows.</p>
+
+<div class="grid grid--gap">
+  <div class="col-md--1-2 row-md--1-4">First grid item</div>
+  <div class="col-md--2-3 row-md--1-2">Second grid item</div>
+  <div class="col-md--2-3 row-md--2-3">Third grid item</div>
+  <div class="col-md--2-3 row-md--3-4">Fourth grid item</div>
+</div>
+
+<pre><code>&lt;div class=&quot;grid grid--gap&quot;&gt;
+  &lt;div class=&quot;col-md--1-2 row-md--1-4&quot;&gt;First grid item&lt;/div&gt;
+  &lt;div class=&quot;col-md--2-3 row-md--1-2&quot;&gt;Second grid item&lt;/div&gt;
+  &lt;div class=&quot;col-md--2-3 row-md--2-3&quot;&gt;Third grid item&lt;/div&gt;
+  &lt;div class=&quot;col-md--2-3 row-md--3-4&quot;&gt;Fourth grid item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Easy Layout</h3>
+
+<p>Full width header and footer. Main section left 2/3 width. Sidebar 1/3 width.</p>
+
+<div class="grid">
+  <header class="col-md--1-4">Header</header>
+  <main class="col-md--1-3">Main article</main>
+  <div class="col-md--3-4">Sidebar</div>
+  <footer class="col-md--1-4">Footer</footer>
+</div>
+
+<div><pre><code>&lt;div class=&quot;grid&quot;&gt;
+  &lt;header class=&quot;col-md--1-4&quot;&gt;Header&lt;/header&gt;
+  &lt;main class=&quot;col-md--1-3&quot;&gt;Main article&lt;/main&gt;
+  &lt;div class=&quot;col-md--3-4&quot;&gt;Sidebar&lt;/div&gt;
+  &lt;footer class=&quot;col-md--1-4&quot;&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre></div>
+
+<h3>Complex Layout (viewport widths 48rem up) &mdash; exemplifying grid nesting, column re-ordering and center-justifying:</h3>
+
+<ul>
+  <li>Header full width on small viewports</li>
+  <li>Sidebar nav
+    <ul>
+      <li>as full width block (below header) on small viewports</li>
+      <li>left 1/4 width on medium viewports</li>
+      <li>right 1/4 width on large viewports</li>
+    </ul>
+  </li>
+  <li>Main article
+    <ul>
+      <li>as full width block on small viewports</li>
+      <li>right 3/4 width on medium viewports</li>
+      <li>left 3/4 width on large viewports</li>
+    </ul>
+  </li>
+  <li>Three nested items (within main article)
+    <ul>
+      <li>stacked on small viewports</li>
+      <li>in a row on medium viewports up</li>
+    </ul>
+  </li>
+  <li>Footer full width but centered on all viewports</li>
+</ul>
+
+<div class="grid grid--gap">
+  <header class="col--1-2 col-md--1-5 row--1-2">Header</header>
+  <div class="col--1-2 col-lg--4-5 row-md--2-3">Sidebar nav</div>
+  <main class="col--1-2 col-md--2-5 col-lg--1-4 row-md--2-3">
+    <h1 style="margin-top: 0;">Article</h1>
+    <section class="grid grid--gap">
+      <div class="col-md--1-2">Nested</div>
+      <div class="col-md--2-3">Nested</div>
+      <div class="col-md--3-4">Nested</div>
+    </section>
+  </main>
+  <footer class="col-md--1-5 justify-md--center">Footer</footer>
+</div>
+
+<div><pre><code>&lt;div class=&quot;grid grid--gap&quot;&gt;
+  &lt;header class=&quot;col--1-2 col-md--1-5 justify--center justify-md--left row--1-2&quot;&gt;Header&lt;/header&gt;
+  &lt;div class=&quot;col--1-2 col-lg--4-5 row-md--2-3&quot;&gt;Sidebar nav&lt;/div&gt;
+  &lt;main class=&quot;col--1-2 col-md--2-5 col-lg--1-4 row-md--2-3&quot;&gt;
+    &lt;h1&gt;Article&lt;/h1&gt;
+    &lt;section class=&quot;grid grid--gap&quot;&gt;
+      &lt;div class=&quot;col-md--1-2&quot;&gt;Nested&lt;/div&gt;
+      &lt;div class=&quot;col-md--2-3&quot;&gt;Nested&lt;/div&gt;
+      &lt;div class=&quot;col-md--3-4&quot;&gt;Nested&lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class=&quot;col--1-2 col-md--1-5 justify--center&quot;&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre></div>
+
+</main>
+
+</body>
+
+</html>
