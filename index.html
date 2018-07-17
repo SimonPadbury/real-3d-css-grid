@@ -93,7 +93,7 @@
   </li>
   <li>The grid layout kicks in at minimum 48rem (768px) by default. Phones in portrait orientation get a single-column layout.
     <ul>
-      <li>If you need a grid layout on devices smaller than 48rem viewport width, then you can un-comment <code>@include grid-tiny</code> in the <strong>class-builder SCSS</strong>.</li>
+      <li>If you need a grid layout on devices smaller than 48rem viewport width, then you can un-comment <code>@include grid--tiny</code> in the <strong>class-builder SCSS</strong>.</li>
     </ul>
   <li>Per grid-item justification and alignment.</li>
   <li>RTL and LTR languages are supported.</li>
@@ -120,7 +120,7 @@
 <ul>
   <li><strong>Column tracking</strong> &mdash; multiple permutations, e.g.:
     <ul>
-      <li><code>.col-md--1-3</code> item starts column track 1 and ends column track 3 = spans columns 1 &amp;2.</li>
+      <li><code>.col-md--1-3</code> item starts column track 1 and ends column track 3 = spans columns 1 &amp; 2.</li>
       <li><code>.col-md--3-4</code> item starts column track 3 and ends column track 4 = spans column 4 only.</li>
     </ul>
     <br>
@@ -152,15 +152,6 @@
 </ul>
 
 <h2>Responsive (viewport width) modifiers</h2>
-
-<h3>Grid Classes</h3>
-
-<ul>
-  <li><code>.grid-md--h1</code> ... <code>.grid-md--h4-v4</code> &mdash; 48rem (= 768px) width up</li>
-  <li><code>.grid-lg--h1</code> ... <code>.grid-lg--h4-v4</code> &mdash; 64rem (= 1024px) width up</li>
-</ul>
-
-<h3>Grid-item Classes</h3>
 
 <ul>
   <li>Viewport widths 48rem up:

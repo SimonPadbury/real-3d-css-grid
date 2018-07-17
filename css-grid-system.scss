@@ -23,8 +23,6 @@ $grid--gap-width: 1rem;
 // relevant part of the class-builder below. 
 // You only need this stuff if you run into problems when you're trying
 // to have empty cells and/or overlapping items.
-//
-// Example: .grid.grid-md--h4-v3 constrains a grid to 4 columns, 3 rows.
 
 @mixin grid--lattice {
   &--h {
@@ -43,6 +41,11 @@ $grid--gap-width: 1rem;
     }
   }
 }
+
+// Example: .grid.grid-md--h4-v3 constrains a grid to 4 columns, 3 rows.
+//
+// From .grid-md--h1 (optional declaration for rows) to .grid-md--h4-v4
+// you have up to 16 permutations. Plus 16 for .grid-lg--*
 
 @mixin grid--setup {
   //@include grid--lattice;
@@ -122,7 +125,7 @@ $grid--gap-width: 1rem;
   &--stretch {align-self: stretch;}
 }
 
-@mixin grid-tiny {
+@mixin grid--tiny {
   .col {@include column-tracks;}
   .row {@include row-tracks;}
   .justify {@include justify;}
@@ -137,7 +140,7 @@ $grid--gap-width: 1rem;
   //@include grid--setup;
 }
 
-//@include grid-tiny
+//@include grid--tiny
 
 @media (min-width: $mq--md) {
   .col-md {@include column-tracks;}
